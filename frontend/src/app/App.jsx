@@ -62,6 +62,7 @@ const App = () => {
     setTimeout(() => {
       setBattle({ ...data.result, problem: problem.trim() });
       setStatus(STATES.RESULTS);
+      setProblem("");
     }, 2800);
   }, [problem, status]);
 
