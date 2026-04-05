@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Scale } from "lucide-react";
+import MarkdownRenderer from "./MarkdownRenderer";
 
 const ReasoningFooter = ({ judge, isVisible }) => {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ const ReasoningFooter = ({ judge, isVisible }) => {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
-        <span style={{ fontSize: "0.75rem", opacity: 0.6 }}>⚖</span>
+        <Scale size={15} />
         <span className="reasoning-toggle-label">Judge's Reasoning</span>
         <ChevronDown
           size={15}
@@ -28,13 +29,13 @@ const ReasoningFooter = ({ judge, isVisible }) => {
             <p className="reasoning-col-label reasoning-col-label--alpha">
               Model Alpha
             </p>
-            <p className="reasoning-text">{judge.solution_1_reasoning}</p>
+            <MarkdownRenderer content={judge.solution_1_reasoning} />
           </div>
           <div className="reasoning-col">
             <p className="reasoning-col-label reasoning-col-label--omega">
               Model Omega
             </p>
-            <p className="reasoning-text">{judge.solution_2_reasoning}</p>
+            <MarkdownRenderer content={judge.solution_2_reasoning} />
           </div>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Code2 } from "lucide-react";
+import { Trophy, Hexagon } from "lucide-react";
+import MarkdownRenderer from "./MarkdownRenderer";
 
-const SolutionCard = ({ solution, modelName, modelKey, language, isWinner, index, isLoading }) => {
+const SolutionCard = ({ solution, modelName, modelKey, isWinner, index, isLoading }) => {
   const cardRef = useRef(null);
 
   // GSAP: fade + lift on mount
@@ -16,7 +17,7 @@ const SolutionCard = ({ solution, modelName, modelKey, language, isWinner, index
       delay: index * 0.12,
       ease: "power2.out",
     });
-  }, [solution, isLoading]);
+  }, [solution, isLoading, index]);
 
   if (isLoading) {
     return (
@@ -24,7 +25,7 @@ const SolutionCard = ({ solution, modelName, modelKey, language, isWinner, index
         <div className="solution-card-header">
           <span className="solution-card-title">Solution {index + 1}</span>
           <span className={`model-chip model-chip--${modelKey}`}>{modelName}</span>
-          <span className="lang-chip"><Code2 size={11} /> {language}</span>
+          {/* <span className="lang-chip"><Code2 size={11} /> {language}</span> */}
         </div>
         <div className="solution-content" style={{ padding: "20px" }}>
           {[100, 70, 85, 55, 90, 60, 75].map((w, i) => (
@@ -45,11 +46,11 @@ const SolutionCard = ({ solution, modelName, modelKey, language, isWinner, index
         <div className="solution-card-header">
           <span className="solution-card-title">Solution {index + 1}</span>
           <span className={`model-chip model-chip--${modelKey}`}>{modelName}</span>
-          <span className="lang-chip"><Code2 size={11} /> {language}</span>
+          {/* <span className="lang-chip"><Code2 size={11} /> {language}</span> */}
         </div>
         <div className="card-placeholder">
           <div className="placeholder-icon">
-            {index === 0 ? "⬡" : "⬢"}
+            <Hexagon size={22} />
           </div>
           <p className="placeholder-text">Awaiting battle</p>
           <p className="placeholder-sub">Submit a problem to see {modelName}'s solution here</p>
@@ -70,13 +71,14 @@ const SolutionCard = ({ solution, modelName, modelKey, language, isWinner, index
       <div className="solution-card-header">
         <span className="solution-card-title">Solution {index + 1}</span>
         <span className={`model-chip model-chip--${modelKey}`}>
-          {isWinner && "🏆 "}{modelName}
+          {isWinner && <Trophy size={14} style={{ marginRight: 6 }} />}
+          {modelName}
         </span>
-        <span className="lang-chip"><Code2 size={11} /> {language}</span>
+        {/* <span className="lang-chip"><Code2 size={11} /> {language}</span> */}
       </div>
 
       <div className="solution-content scrollable">
-        <pre className="code-block">{solution}</pre>
+        <MarkdownRenderer content={solution} />
       </div>
     </div>
   );
