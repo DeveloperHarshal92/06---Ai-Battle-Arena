@@ -39,7 +39,7 @@ const LoginPage = () => {
     }
 
     setErrors({});
-    navigate("/arena");
+    navigate("/loading");
   };
 
   return (

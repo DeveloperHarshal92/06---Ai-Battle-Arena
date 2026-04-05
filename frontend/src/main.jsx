@@ -14,9 +14,10 @@ const Root = () => {
     <BrowserRouter>
       <AnimatePresence mode="wait">
         <Routes>
-          <Route path="/" element={<LoadingScreen />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/loading" element={<LoadingScreen />} />
           <Route path="/arena" element={<App />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

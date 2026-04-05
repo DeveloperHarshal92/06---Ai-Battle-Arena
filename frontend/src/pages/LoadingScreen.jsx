@@ -42,7 +42,7 @@ const LoadingScreen = () => {
       onComplete: () => {
         setTimeout(() => {
           setFadeOut(true);
-          setTimeout(() => navigate("/login"), 600);
+          setTimeout(() => navigate("/arena"), 600);
         }, 500);
       },
     });
